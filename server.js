@@ -12,14 +12,14 @@ app.use(cors());
 app.use("/api", async (req, res) => {
   //   const url = `https://api.football-data.org/v2${req.url}`; // all matches
 
-  const url = `https://api.football-data.org/v4/competitions/PL/matches?matchday=20 `; // pl matches
+  const url = `https://api.football-data.org/v4/competitions/PL/matches?matchday=${req.url} `; // pl matches
   const response = await fetch(url, {
     headers: {
       "X-Auth-Token": "a621e855bacc4de0b5d86da4ad62a525",
     },
   });
   const data = await response.json();
-  res.json(data);
+  return res.status(200).json(data);
 });
 
 app.listen(port, () => {
